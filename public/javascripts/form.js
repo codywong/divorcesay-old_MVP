@@ -9,7 +9,14 @@ function nameFunction(){
 	var r = document.createElement('span');
 	var s = document.createElement('p');
 
-	var y = document.createElement("INPUT");
+	var y = document.createElement("select");
+	var month = new Array("Child", "Your Annual Income", "Spousal Annual Income", "Matrimonial Home", "Marriage Length");
+
+	for (var i=0; i < month.length;++i){
+	addOption(y, month[i], month[i]);
+
+ 	}
+
 	var z = document.createElement("INPUT");
 
 	y.setAttribute("type", "text");
@@ -32,3 +39,13 @@ function nameFunction(){
 	r.setAttribute("id", "id_" + i);
 	document.getElementById("myForm").appendChild(r);
 }
+
+function addOption(selectbox,text,value )
+{
+	var optn = document.createElement("OPTION");
+	optn.text = text;
+	optn.value = value;
+	selectbox.options.add(optn);
+}
+
+
