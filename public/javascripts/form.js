@@ -26,9 +26,9 @@ function nameFunction(){
 	var g = document.createElement("IMG");
 	g.setAttribute("src", "delete.png");
 	increment();
-	y.setAttribute("aa", "textelement_" + i);
+	y.setAttribute("name", "textelement_" + i);
 	increment();
-	z.setAttribute("aa", "textelement_" + i);
+	z.setAttribute("name", "textelement2_" + i);
 	r.appendChild(y);
 	
 	r.appendChild(z);
