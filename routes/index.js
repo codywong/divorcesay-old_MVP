@@ -24,10 +24,11 @@ router.post('/', function(req, res) {
 	console.log("post received:");
 	console.log(req.body);
 
-//********************************** HARD CODING QUESTION
-	var createdQuestion = "If I am getting a divorce, my income is around $60,000, my wife income is around $80,000, we have a 9-year-old child, a 7-year-old child, a 6-year-old child, who will get child custody?";
-	// var questionConditions = createSentence(req.body.fields, req.body.values);
-	// var question = questionConditions + "who will get the child custody?"
+//********************************** HARD CODED QUESTION
+	// var createdQuestion = "If I am getting a divorce, my income is around $45,000, my spouse has an income of around $0, we have a 1-year-old child, who will get the child custody?";
+	var questionConditions = createSentence(req.body.fields, req.body.values);
+	var createdQuestion = questionConditions + "who will get the child custody?"
+	console.log(createdQuestion)
 
 	// select our watson instance
 	var parts = url.parse(service_url + '/instance/507/deepqa/v1/question');
@@ -45,6 +46,36 @@ router.post('/', function(req, res) {
 	    }
 	};
 
+	// Create a request to POST to Watson
+	var watson_req = https.request(options, function(result) {
+		
+	    result.setEncoding('utf-8');
+	    var response_string = '';
+
+	    result.on('data', function(chunk) {
+	        response_string += chunk;
+	    });
+
+
+	    result.on('end', function() {
+	        var answers_pipeline = JSON.parse(response_string),
+	             answers= answers_pipeline[0];
+
+	        console.log(answers_pipeline['question']['evidencelist'][0]['text']);
+	        return res.render('index', {
+	            'questionText': req.body.questionText,
+	            'answers': answers
+	        })
+	    })
+
+	});
+	watson_req.on('error', function(e) {
+	    return res.render('index', {
+	        'error': e.message
+	    })
+	});
+
+
 	// create the question to Watson
 	var questionData = {
 	    'question': {
@@ -54,33 +85,6 @@ router.post('/', function(req, res) {
 	        'questionText': createdQuestion // the question
 	    }
 	};
-
-
-	// Create a request to POST to Watson
-	var watson_req = https.request(options, function(result) {
-		// console.log(result['question']);
-	    // result.setEncoding('utf-8');
-	    // var response_string = '';
-
-	    // result.on('data', function(chunk) {
-	    //     response_string += chunk;
-	    // });
-
-	    // result.on('end', function() {
-	    //     var answers_pipeline = JSON.parse(response_string),
-	    //         answers = answers_pipeline[0];
-	    //     return res.render('index', {
-	    //         'questionText': req.body.questionText,
-	    //         'answers': answers
-	    //     })
-	    // })
-
-	});
-	watson_req.on('error', function(e) {
-	    return res.render('index', {
-	        'error': e.message
-	    })
-	});
 
 
 	// Set the POST body and send to Watson
