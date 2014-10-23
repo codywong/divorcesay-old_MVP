@@ -13,8 +13,7 @@ function nameFunction(){
 	var month = new Array("Child", "Your Annual Income", "Spousal Annual Income", "Matrimonial Home", "Marriage Length");
 
 	for (var i=0; i < month.length;++i){
-	addOption(y, month[i], month[i]);
-
+		addOption(y, month[i], month[i]);
  	}
 
 	var z = document.createElement("INPUT");
@@ -26,13 +25,13 @@ function nameFunction(){
 	var g = document.createElement("IMG");
 	g.setAttribute("src", "delete.png");
 	increment();
-	y.setAttribute("name", "textelement_" + i);
+	y.setAttribute("name", "fields");
 	increment();
-	z.setAttribute("name", "textelement2_" + i);
+	z.setAttribute("name", "values");
 	r.appendChild(y);
 	
 	r.appendChild(z);
-	g.setAttribute("onclick", "removeElement('myForm','id_" + i + "')");
+	g.setAttribute("onclick", "removeElement('myForm','id_"+ i +"')");
 	r.appendChild(g);
 	r.appendChild(s);
 
@@ -47,5 +46,23 @@ function addOption(selectbox,text,value )
 	optn.value = value;
 	selectbox.options.add(optn);
 }
+
+function removeElement(parentDiv, childDiv){
+ 
+
+     if (childDiv == parentDiv) {
+          alert("The parent div cannot be removed.");
+     }
+     else if (document.getElementById(childDiv)) {     
+          var child = document.getElementById(childDiv);
+          var parent = document.getElementById(parentDiv);
+          parent.removeChild(child);
+     }
+     else {
+          alert("Child div has already been removed or does not exist.");
+          return false;
+     }
+}
+
 
 
