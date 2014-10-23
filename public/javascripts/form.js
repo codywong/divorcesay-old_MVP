@@ -4,7 +4,10 @@ function increment(){
 }
 
 
+window.onload= function(){
+	nameFunction();
 
+}
 function nameFunction(){
 	var r = document.createElement('span');
 	var s = document.createElement('p');
@@ -24,6 +27,8 @@ function nameFunction(){
 	z.setAttribute("placeholder", " ");
 	var g = document.createElement("IMG");
 	g.setAttribute("src", "delete.png");
+	g.setAttribute("height", "20px");
+	g.setAttribute("width", "20px");
 	increment();
 	y.setAttribute("name", "fields");
 	increment();
