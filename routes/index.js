@@ -61,7 +61,7 @@ router.post('/', function(req, res) {
 	        var answers_pipeline = JSON.parse(response_string),
 	             answers= answers_pipeline[0];
 
-	        console.log(answers_pipeline['question']['evidencelist'][0]['text']);
+	        // console.log(answers_pipeline['question']['evidencelist'][0]['text']);
 	        return res.render('index', {
 	            'questionText': req.body.questionText,
 	            'answers': answers

@@ -27,7 +27,7 @@ function nameFunction(){
 	z.setAttribute("placeholder", " ");
 	var g = document.createElement("IMG");
 	g.setAttribute("src", "delete.png");
-	g.setAttribute("height", "20px");
+	// g.setAttribute("height", "20px");
 	g.setAttribute("width", "20px");
 	increment();
 	y.setAttribute("name", "fields");
