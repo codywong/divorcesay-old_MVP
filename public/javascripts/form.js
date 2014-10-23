@@ -15,8 +15,8 @@ function nameFunction(){
 	var y = document.createElement("select");
 	var month = new Array("Child", "Your Annual Income", "Spousal Annual Income", "Matrimonial Home", "Marriage Length");
 
-	for (var i=0; i < month.length;++i){
-		addOption(y, month[i], month[i]);
+	for (var a=0; a < month.length;++a){
+		addOption(y, month[a], month[a]);
  	}
 
 	var z = document.createElement("INPUT");

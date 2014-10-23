@@ -5,7 +5,7 @@ var https = require('https');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { caseName: '', caseText: "Fill out the form on the left, and click 'Find me similar cases' to get some results!" });
 });
 
 
@@ -62,10 +62,9 @@ router.post('/', function(req, res) {
 	             answers= answers_pipeline[0];
 
 	        // console.log(answers_pipeline['question']['evidencelist'][0]['text']);
-	        return res.render('index', {
-	            'questionText': req.body.questionText,
-	            'answers': answers
-	        })
+	        var outputAnswer = answers_pipeline['question']['evidencelist'][0]['text'];
+	        var outputCaseName = answers_pipeline['question']['evidencelist'][0]['title'];
+	        res.render('index', {caseName: outputCaseName, caseText: outputAnswer.substring(0, 1024) + "... \n Read the case to find out more!"});
 	    })
 
 	});
@@ -93,7 +92,7 @@ router.post('/', function(req, res) {
 
 
 
-	res.render('index', {title: 'Express'});
+	// res.render('index', {caseText: 'asdf'});
 	});
 
 module.exports = router;
