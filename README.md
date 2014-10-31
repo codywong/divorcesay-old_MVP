@@ -1,4 +1,4 @@
 Divorcesay
 ==========
 
-CSC490 - Divorcesay App
+First MVP - discontinued
